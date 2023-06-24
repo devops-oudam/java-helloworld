@@ -36,5 +36,11 @@ pipeline {
             }
         }
 
+        stage('DeployRemote_Script') {
+            steps {
+                sh "ssh root@10.203.10.78 /opt/helloworld/deploy.sh &"
+            }
+        }
+
     }
 }
