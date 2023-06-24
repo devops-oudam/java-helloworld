@@ -32,7 +32,7 @@ pipeline {
         stage('CopyFileToServer') {
             steps {
                 echo "Welcome to ${params.WORKSPACE} deployment"
-                sh "cp target/spring-boot-2-hello-world-1.0.2-SNAPSHOT.jar root@10.203.10.78:/opt/helloworld/versions/hello_${BUILD_NUMBER}.jar"
+                sh "scp target/spring-boot-2-hello-world-1.0.2-SNAPSHOT.jar root@10.203.10.78:/opt/helloworld/versions/hello_${BUILD_NUMBER}.jar"
             }
         }
 
