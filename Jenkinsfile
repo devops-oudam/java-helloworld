@@ -38,9 +38,17 @@ pipeline {
 
         stage('Push Docker to Registry') {
             steps {
-                echo "Starting docker push..."
+                withCredentials([usernamePassword(credentialsId: 'DockerRegistryCredential', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh '''
+                        echo "Logging into Docker registry..."
+                        docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+                        echo "Pushing Docker image to registry..."
+                        # Your Docker push command here
+                    '''
+                }
             }
         }
+
 
         stage('Execute deployment script') {
             steps {
