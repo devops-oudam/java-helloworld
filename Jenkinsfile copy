@@ -29,22 +29,16 @@ pipeline {
             }
         }
 
-        stage('Build Docker') {
+        stage('CopyFileToServer') {
             steps {
-                echo "Starting docker build..."
-                sh "docker build -t myhello:0.0.1 ."
+                echo "Welcome to ${params.WORKSPACE} deployment"
+                sh "scp target/spring-boot-2-hello-world-1.0.2-SNAPSHOT.jar root@10.203.10.78:/opt/helloworld/versions/hello_${BUILD_NUMBER}.jar"
             }
         }
 
-        stage('Push Docker to Registry') {
+        stage('DeployRemote_Script') {
             steps {
-                echo "Starting docker push..."
-            }
-        }
-
-        stage('Execute deployment script') {
-            steps {
-                echo "Starting docker push..."
+                sh "ssh root@10.203.10.78 /opt/helloworld/deploy.sh &"
             }
         }
 
