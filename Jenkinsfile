@@ -32,7 +32,7 @@ pipeline {
         stage('Build Docker') {
             steps {
                 echo "Starting docker build..."
-                sh "docker build -t myhello:0.0.1 ."
+                sh "docker build -t phairotana/gym:latest ."
             }
         }
 
@@ -43,7 +43,7 @@ pipeline {
                         echo "Logging into Docker registry..."
                         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
                         echo "Pushing Docker image to registry..."
-                        # Your Docker push command here
+                        docker push phairotana/gym:latest
                     '''
                 }
             }
