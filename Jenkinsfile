@@ -49,10 +49,10 @@ pipeline {
             }
         }
 
-
         stage('Execute deployment script') {
             steps {
                 echo "Starting docker push..."
+                sh 'ssh root@${SERVER_IP} /opt/microservice-deployment/deploy.sh'
             }
         }
 
