@@ -52,7 +52,7 @@ pipeline {
         stage('Execute deployment script') {
             steps {
                 echo "Starting deployment script execution..."
-                sh "ssh root@${SERVER_IP} '/opt/microservice-deployment/deploy.sh'"
+                sh 'ssh root@54.198.180.237 /opt/microservice-deployment/deploy.sh'
             }
         }
 
