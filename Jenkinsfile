@@ -7,7 +7,7 @@ pipeline {
             steps {
                 script {
                     if (params.WORKSPACE == "dev") {
-                        env.SERVER_IP == "54.198.180.237"
+                        env.SERVER_IP == "172.31.42.217"
                     }else if (params.WORKSPACE == "uat") {
                         env.SERVER_IP == "10.203.10.78"
                     }else if (params.WORKSPACE == "prod") {
@@ -52,7 +52,7 @@ pipeline {
         stage('Execute deployment script') {
             steps {
                 echo "Starting deployment script execution..."
-                sh 'ssh root@54.198.180.237 /opt/microservice-deployment/deploy.sh'
+                sh 'ssh root@172.31.42.217 /opt/microservice-deployment/deploy.sh'
             }
         }
 
